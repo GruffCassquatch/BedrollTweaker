@@ -10,7 +10,7 @@ A mod for The Long Dark
 
   ## Limitations:
   * If you change the the warmth or weight of bedrolls while in-game, you will need to change scene (e.g. go outside/inside) to apply the changes.
-  * Compatible with [BlanketMod](https://github.com/ds5678/BlanketMod)
+  * Compatible with [BlanketMod](https://github.com/ds5678/BlanketMod), but only one mod's settings for Bedroll Warmth & Weight will apply.
 
 ## Requirements
 [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
@@ -31,8 +31,8 @@ Delete ```BedrollTweaker.dll``` and ```BedrollTweaker.json``` from your Mods fol
 3. Scroll across to the ```Bedroll Tweaker``` menu
 4. Choose to Enable or Disable the mod
 5. Mod Options:
-	* Tweak Bedroll Weight & Warmth: allows you to set the warmth and weight of the standard bedroll.
-  * Tweak Bearskin Bedroll Weight & Warmth: allows you to set the warmth and weight of the bearskin bedroll.
+	* Tweak Bedroll Warmth & Weight: allows you to set the warmth and weight of the standard bedroll.
+  * Tweak Bearskin Bedroll Warmth & Weight: allows you to set the warmth and weight of the bearskin bedroll.
 	* Bedroll Warmth Stacks:
 		* Allows you to receive bonus warmth from additional bedrolls in your inventory. 
 		* Applies when using a bed or bedroll.
