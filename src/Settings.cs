@@ -10,12 +10,11 @@ namespace BedrollTweaker
         [Description("YES: The mod is enabled. NO: The mod is disabled.")]
         public bool modFunction = false;
 
-        [Section("Tweak Bedroll Weight & Warmth")]
+        [Section("Tweak Bedroll Warmth & Weight")]
         [Name("Tweak Bedroll Weight & Warmth")]
         [Description("YES: Show settings for bedroll Weight and Warmth. NO: Unchanged.")]
         public bool tweakBedroll = false;
 
-        [Section("Bedroll")]
         [Name("Warmth Bonus")]
         [Description("Maximum warmth bonus provided by standard bedroll.\nGame Default is 5°C.")]
         [Slider(1f, 20f, 39, NumberFormat = "{0:0.##}°C")]
@@ -26,12 +25,11 @@ namespace BedrollTweaker
         [Slider(0.25f, 5f, 20, NumberFormat = "{0:0.##}kg")]
         public float bedrollWeight = 1f;
 
-        [Section("Tweak Bearskin Bedroll Weight & Warmth")]
+        [Section("Tweak Bearskin Bedroll Warmth & Weight")]
         [Name("Tweak Bearskin Bedroll Weight & Warmth")]
         [Description("YES: Show settings for bedroll Weight and Warmth. NO: Unchanged.")]
         public bool tweakBearskinBedroll = false;
 
-        [Section("Bearskin Bedroll")]
         [Name("Warmth Bonus")]
         [Description("Maximum warmth bonus provided by bearskin bedroll.\nGame Default is 12°C.")]
         [Slider(1f, 20f, 39, NumberFormat = "{0:0.##}°C")]
