@@ -16,6 +16,7 @@ A mod for The Long Dark
   * Compatible with [GearDecayModifier](https://github.com/Xpazeman/tld-gear-decay-modifier), but be aware that if you use BOTH to change bedroll decay, the efects are CUMULATIVE. 
       * E.g. set both mods to reduce bedroll decay by 50% and you will overall reduce decay by 75% (50% x 50%). 
       * If you only want Gear Decay Modifier to affect the decay rates, leave the Decay settings in Bedroll Tweaker at 'Unchanged'.
+      * If you only want Bedroll Tweaker to affect the decay rates, leave the "Bedrolls decay rate" setting in Gear Decay Modifier at 1.
 
 ## Requirements
 [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
