@@ -16,7 +16,7 @@ namespace BedrollTweaker
 
 
         [Section("Bedroll")]
-        [Name("Tweak Bedroll Warmth, Weight & Decay")]
+        [Name("Tweak Bedroll Warmth & Weight")]
         [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice tweakBedroll = Choice.Default;
@@ -31,7 +31,7 @@ namespace BedrollTweaker
         [Slider(0.25f, 5f, 20, NumberFormat = "{0:0.##}kg")]
         public float bedrollWeight = 1f;
 
-        [Name("Decay Rate")]
+        [Name("Tweak Decay Rate")]
         [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice bedrollDecay = Choice.Default;
@@ -47,7 +47,7 @@ namespace BedrollTweaker
         public float bedrollDecayOnUse = 1f;
 
         [Section("Bearskin Bedroll")]
-        [Name("Tweak Bedroll Warmth, Weight & Decay")]
+        [Name("Tweak Bedroll Warmth & Weight")]
         [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice tweakBearskinBedroll = Choice.Default;
@@ -62,7 +62,7 @@ namespace BedrollTweaker
         [Slider(0.25f, 10f, 40, NumberFormat = "{0:0.##}kg")]
         public float bearskinBedrollWeight = 3f;
 
-        [Name("Decay Rate")]
+        [Name("Tweak Decay Rate")]
         [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice bearskinBedrollDecay = Choice.Default;
@@ -142,15 +142,15 @@ namespace BedrollTweaker
             SetFieldVisible(nameof(tweakBedroll), Settings.settings.modFunction);
             SetFieldVisible(nameof(bedrollWarmth), Settings.settings.modFunction && Settings.settings.tweakBedroll == Choice.Custom);
             SetFieldVisible(nameof(bedrollWeight), Settings.settings.modFunction && Settings.settings.tweakBedroll == Choice.Custom);
-            SetFieldVisible(nameof(bedrollDecay), Settings.settings.modFunction && Settings.settings.tweakBedroll == Choice.Custom);
-            SetFieldVisible(nameof(bedrollDecayDaily), Settings.settings.modFunction && Settings.settings.tweakBedroll == Choice.Custom && Settings.settings.bedrollDecay == Choice.Custom);
-            SetFieldVisible(nameof(bedrollDecayOnUse), Settings.settings.modFunction && Settings.settings.tweakBedroll == Choice.Custom && Settings.settings.bedrollDecay == Choice.Custom);
+            SetFieldVisible(nameof(bedrollDecay), Settings.settings.modFunction);
+            SetFieldVisible(nameof(bedrollDecayDaily), Settings.settings.modFunction && Settings.settings.bedrollDecay == Choice.Custom);
+            SetFieldVisible(nameof(bedrollDecayOnUse), Settings.settings.modFunction && Settings.settings.bedrollDecay == Choice.Custom);
             SetFieldVisible(nameof(tweakBearskinBedroll), Settings.settings.modFunction);
             SetFieldVisible(nameof(bearskinBedrollWarmth), Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom);
             SetFieldVisible(nameof(bearskinBedrollWeight), Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom);
-            SetFieldVisible(nameof(bearskinBedrollDecay), Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom);
-            SetFieldVisible(nameof(bearskinBedrollDecayDaily), Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom && Settings.settings.bearskinBedrollDecay == Choice.Custom);
-            SetFieldVisible(nameof(bearskinBedrollDecayOnUse), Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom && Settings.settings.bearskinBedrollDecay == Choice.Custom);
+            SetFieldVisible(nameof(bearskinBedrollDecay), Settings.settings.modFunction);
+            SetFieldVisible(nameof(bearskinBedrollDecayDaily), Settings.settings.modFunction && Settings.settings.bearskinBedrollDecay == Choice.Custom);
+            SetFieldVisible(nameof(bearskinBedrollDecayOnUse), Settings.settings.modFunction && Settings.settings.bearskinBedrollDecay == Choice.Custom);
             SetFieldVisible(nameof(bedrollsStack), Settings.settings.modFunction);
             SetFieldVisible(nameof(maxBedrolls), Settings.settings.modFunction && Settings.settings.bedrollsStack);
             SetFieldVisible(nameof(maxBedrollsNumber), Settings.settings.modFunction && Settings.settings.maxBedrolls && Settings.settings.bedrollsStack);

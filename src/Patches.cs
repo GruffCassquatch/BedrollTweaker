@@ -95,10 +95,13 @@ namespace BedrollTweaker
             {
                 if (Settings.settings.modFunction) 
                 {
-                    if (__instance.m_GearName == "GEAR_BedRoll" && Settings.settings.tweakBedroll == Choice.Custom)
+                    if (__instance.m_GearName == "GEAR_BedRoll")
                     {
-                        __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bedrollWarmth;
-                        __instance.m_WeightKG = Settings.settings.bedrollWeight;
+                        if (Settings.settings.tweakBedroll == Choice.Custom) 
+                        {
+                            __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bedrollWarmth;
+                            __instance.m_WeightKG = Settings.settings.bedrollWeight; 
+                        }
                         if (Settings.settings.bedrollDecay == Choice.Custom)
                         {
                             //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
@@ -113,10 +116,13 @@ namespace BedrollTweaker
                             }
                         }
                     }
-                    else if (__instance.m_GearName == "GEAR_BearSkinBedRoll" && Settings.settings.tweakBearskinBedroll == Choice.Custom)
+                    else if (__instance.m_GearName == "GEAR_BearSkinBedRoll")
                     {
-                        __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bearskinBedrollWarmth;
-                        __instance.m_WeightKG = Settings.settings.bearskinBedrollWeight;
+                        if (Settings.settings.tweakBearskinBedroll == Choice.Custom)
+                        {
+                            __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bearskinBedrollWarmth;
+                            __instance.m_WeightKG = Settings.settings.bearskinBedrollWeight;
+                        }
                         if (Settings.settings.bearskinBedrollDecay == Choice.Custom)
                         {
                             //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
