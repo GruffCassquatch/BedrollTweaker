@@ -3,14 +3,18 @@ A mod for The Long Dark
 
 ## Mod features:
   * Adjust the warmth and weight of bedrolls and bearskin bedrolls
+  * Adjust both the daily decay rate and the on-use decay rate of bedrolls
   * Enable bedrolls to "stack" warmth bonuses
-  * Uses accurate warmth bonuses (not a flat value per bedroll)
-  * Options to set how many bedrolls can provide extra warmth and how much warmth they provide
+      * Uses accurate warmth bonuses (not a flat value per bedroll)
+      * Options to set how many bedrolls can provide extra warmth and how much warmth they provide
   * Fully configurable and modular
 
   ## Limitations:
-  * If you change the the warmth or weight of bedrolls while in-game, you will need to change scene (e.g. go outside/inside) to apply the changes.
+  * If you change the the warmth, weight or decay of bedrolls while in-game, you will need to change scene (e.g. go outside/inside) to apply the changes.
   * Compatible with [BlanketMod](https://github.com/ds5678/BlanketMod), but only one mod's settings for Bedroll Warmth & Weight will apply.
+  * Compatible with [GearDecayModifier](https://github.com/Xpazeman/tld-gear-decay-modifier), but be aware that if you use BOTH to change bedroll decay, the efects are CUMULATIVE. 
+      * E.g. set both mods to reduce bedroll decay by 50% and you will overall reduce decay by 75% (50% x 50%). 
+      * If you only want Gear Decay Modifier to affect the decay rates, leave the Decay settings in Bedroll Tweaker at 'Unchanged'.
 
 ## Requirements
 [MelonLoader](https://github.com/HerpDerpinstine/MelonLoader/releases/latest/download/MelonLoader.Installer.exe)
@@ -31,8 +35,8 @@ Delete ```BedrollTweaker.dll``` and ```BedrollTweaker.json``` from your Mods fol
 3. Scroll across to the ```Bedroll Tweaker``` menu
 4. Choose to Enable or Disable the mod
 5. Mod Options:
-  * Tweak Bedroll Warmth & Weight: allows you to set the warmth and weight of the standard bedroll.
-  * Tweak Bearskin Bedroll Warmth & Weight: allows you to set the warmth and weight of the bearskin bedroll.
+  * Tweak Bedroll Warmth, Weight & Decay: allows you to set the warmth, weight and decay rates of the standard bedroll.
+  * Tweak Bearskin Bedroll Warmth, Weight & Decay: allows you to set the warmth, weight and decay rates of the bearskin bedroll.
   * Bedroll Warmth Stacks:
 	* Allows you to receive bonus warmth from additional bedrolls in your inventory. 
 	* Applies when using a bed or bedroll.
