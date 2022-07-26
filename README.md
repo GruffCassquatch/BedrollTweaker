@@ -31,24 +31,24 @@ Delete ```BedrollTweaker.dll``` and ```BedrollTweaker.json``` from your Mods fol
 3. Scroll across to the ```Bedroll Tweaker``` menu
 4. Choose to Enable or Disable the mod
 5. Mod Options:
-	* Tweak Bedroll Warmth & Weight: allows you to set the warmth and weight of the standard bedroll.
+  * Tweak Bedroll Warmth & Weight: allows you to set the warmth and weight of the standard bedroll.
   * Tweak Bearskin Bedroll Warmth & Weight: allows you to set the warmth and weight of the bearskin bedroll.
-	* Bedroll Warmth Stacks:
-		* Allows you to receive bonus warmth from additional bedrolls in your inventory. 
-		* Applies when using a bed or bedroll.
-	* Cap number of Bedrolls:
-		* Limit the number of bedrolls that can provide extra warmth.
-    * Bedroll warmth bonuses are applied from highest to lowest, so you will always be using the best available
-	* Cap Total Warmth Bonus:
-		* Limit the total warmth bonus you can receive from all extra bedrolls.
-	* Partial Warmth Bonus:
-		* Choose to only apply a flat percentage of each additional bedroll's warmth.
-    * E.g. set to 50%:  1st extra bedroll provides 50% of its warmth, 2nd provides 50%, 3rd provides 50% etc.
-    * This setting is applied BEFORE Diminishing Warmth is calculated.
+  * Bedroll Warmth Stacks:
+	* Allows you to receive bonus warmth from additional bedrolls in your inventory. 
+	* Applies when using a bed or bedroll.
+  * Cap number of Bedrolls:
+	* Limit the number of bedrolls that can provide extra warmth.
+	* Bedroll warmth bonuses are applied from highest to lowest, so you will always be using the best available
+  * Cap Total Warmth Bonus:
+	* Limit the total warmth bonus you can receive from all extra bedrolls.
+  * Partial Warmth Bonus:
+	* Choose to only apply a flat percentage of each additional bedroll's warmth.
+	* E.g. set to 50%:  1st extra bedroll provides 50% of its warmth, 2nd provides 50%, 3rd provides 50% etc.
+	* This setting is applied BEFORE Diminishing Warmth is calculated.
   * Diminishing Warmth Bonus:
-		* Choose to apply a diminishing percentage of each additional bedroll's warmth.
-    * E.g. set to 10%: 1st extra bedroll provides 90% of its warmth, 2nd provides 80%, 3rd provides 70% etc.
-    * This setting is applied AFTER Partial Warmth is calculated.    
+	* Choose to apply a diminishing percentage of each additional bedroll's warmth.
+	* E.g. set to 10%: 1st extra bedroll provides 90% of its warmth, 2nd provides 80%, 3rd provides 70% etc.
+	* This setting is applied AFTER Partial Warmth is calculated.    
 5. Click ```CONFIRM``` to apply your changes or ```BACK``` to exit without applying changes
 
 ## Feedback, Questions & Troubleshooting
