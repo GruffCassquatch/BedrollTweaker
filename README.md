@@ -2,7 +2,8 @@
 A mod for The Long Dark
 
 ## Mod features:
-  * Adjust the warmth and weight of bedrolls and bearskin bedrolls
+  * Separate settings for standard bedrolls and bearskin bedrolls
+  * Adjust the warmth and weight of bedrolls
   * Adjust both the daily decay rate and the on-use decay rate of bedrolls
   * Enable bedrolls to "stack" warmth bonuses
       * Uses accurate warmth bonuses (not a flat value per bedroll)
