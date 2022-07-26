@@ -95,15 +95,41 @@ namespace BedrollTweaker
             {
                 if (Settings.settings.modFunction) 
                 {
-                    if (Settings.settings.tweakBedroll && __instance.m_GearName == "GEAR_BedRoll")
+                    if (__instance.m_GearName == "GEAR_BedRoll" && Settings.settings.tweakBedroll == Choice.Custom)
                     {
                         __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bedrollWarmth;
                         __instance.m_WeightKG = Settings.settings.bedrollWeight;
+                        if (Settings.settings.bedrollDecay == Choice.Custom)
+                        {
+                            //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
+                            __instance.m_DailyHPDecay *= Settings.settings.bedrollDecayDaily;
+                            //MelonLogger.Msg(__instance.name.ToString() + "NEW DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
+
+                            if (__instance.m_DegradeOnUse)
+                            {
+                                //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
+                                __instance.m_DegradeOnUse.m_DegradeHP *= Settings.settings.bedrollDecayOnUse;
+                                //MelonLogger.Msg(__instance.name.ToString() + "NEW DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
+                            }
+                        }
                     }
-                    else if (Settings.settings.tweakBearskinBedroll && __instance.m_GearName == "GEAR_BearSkinBedRoll")
+                    else if (__instance.m_GearName == "GEAR_BearSkinBedRoll" && Settings.settings.tweakBearskinBedroll == Choice.Custom)
                     {
                         __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bearskinBedrollWarmth;
                         __instance.m_WeightKG = Settings.settings.bearskinBedrollWeight;
+                        if (Settings.settings.bearskinBedrollDecay == Choice.Custom)
+                        {
+                            //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
+                            __instance.m_DailyHPDecay *= Settings.settings.bearskinBedrollDecayDaily;
+                            //MelonLogger.Msg(__instance.name.ToString() + "NEW DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
+
+                            if (__instance.m_DegradeOnUse)
+                            {
+                                //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
+                                __instance.m_DegradeOnUse.m_DegradeHP *= Settings.settings.bearskinBedrollDecayOnUse;
+                                //MelonLogger.Msg(__instance.name.ToString() + "NEW DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
+                            }
+                        }
                     }
                 }
             }
@@ -114,7 +140,7 @@ namespace BedrollTweaker
         {
             private static void Postfix()
             {
-                if (Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll)
+                if (Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom)
                 {
                     Settings.settings.ChangePrefabs();
                 }
