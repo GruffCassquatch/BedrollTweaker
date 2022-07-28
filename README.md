@@ -6,8 +6,11 @@ A mod for The Long Dark
   * Adjust the warmth and weight of bedrolls
   * Adjust both the daily decay rate and the on-use decay rate of bedrolls
   * Enable bedrolls to "stack" warmth bonuses
+      * In real life, you would be able to use extra bedrolls for additional warmth and use them with beds
+      * If you have more than 1 bedroll, you can get extra warmth from the additional bedrolls
+      * If you use a bed with 1 or more bedrolls in your inventory, you can get extra warmth from the bedrolls
       * Uses accurate warmth bonuses (not a flat value per bedroll)
-      * Options to set how many bedrolls can provide extra warmth and how much warmth they provide
+      * Options to set how many bedrolls can provide extra warmth and how much warmth they can provide
   * Fully configurable and modular
 
   ## Limitations:
