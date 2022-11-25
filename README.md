@@ -1,5 +1,6 @@
 # BedrollTweaker
-A mod for The Long Dark
+A mod for The Long Dark    
+FOR GAME VERSION 2.00 / 2.02 (**PRE TALES FROM THE FAR TERRITORY**)    
 
 ## Mod features:
   * Separate settings for standard bedrolls and bearskin bedrolls
