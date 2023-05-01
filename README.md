@@ -1,6 +1,8 @@
 # BedrollTweaker
 A mod for The Long Dark    
-FOR GAME VERSION 2.00 / 2.02 (**PRE TALES FROM THE FAR TERRITORY**)    
+CHOOSE THE CORRECT MOD VERSION TO MATCH YOUR GAME VERSION      
+
+UPDATED FOR 2.12 / TFTFT BY PHAEDRUS       
 
 ## Mod features:
   * Separate settings for standard bedrolls and bearskin bedrolls
