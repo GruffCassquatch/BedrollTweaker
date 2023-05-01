@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
+using Il2Cpp;
+using Il2CppTLD.Gear;
 using UnityEngine;
-using MelonLoader;
 
 namespace BedrollTweaker
 {
@@ -95,17 +91,17 @@ namespace BedrollTweaker
             {
                 if (Settings.settings.modFunction) 
                 {
-                    if (__instance.m_GearName == "GEAR_BedRoll")
+                    if (__instance.name.Contains("GEAR_BedRoll"))
                     {
                         if (Settings.settings.tweakBedroll == Choice.Custom) 
                         {
                             __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bedrollWarmth;
-                            __instance.m_WeightKG = Settings.settings.bedrollWeight; 
+                            __instance.WeightKG = Settings.settings.bedrollWeight; 
                         }
                         if (Settings.settings.bedrollDecay == Choice.Custom)
                         {
                             //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
-                            __instance.m_DailyHPDecay *= Settings.settings.bedrollDecayDaily;
+                            __instance.m_GearItemData.m_DailyHPDecay *= Settings.settings.bedrollDecayDaily;
                             //MelonLogger.Msg(__instance.name.ToString() + "NEW DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
 
                             if (__instance.m_DegradeOnUse)
@@ -116,17 +112,17 @@ namespace BedrollTweaker
                             }
                         }
                     }
-                    else if (__instance.m_GearName == "GEAR_BearSkinBedRoll")
+                    else if (__instance.name.Contains("GEAR_BearskinBedRoll"))
                     {
                         if (Settings.settings.tweakBearskinBedroll == Choice.Custom)
                         {
                             __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bearskinBedrollWarmth;
-                            __instance.m_WeightKG = Settings.settings.bearskinBedrollWeight;
+                            __instance.WeightKG = Settings.settings.bearskinBedrollWeight;
                         }
                         if (Settings.settings.bearskinBedrollDecay == Choice.Custom)
                         {
                             //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
-                            __instance.m_DailyHPDecay *= Settings.settings.bearskinBedrollDecayDaily;
+                            __instance.m_GearItemData.m_DailyHPDecay *= Settings.settings.bearskinBedrollDecayDaily;
                             //MelonLogger.Msg(__instance.name.ToString() + "NEW DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
 
                             if (__instance.m_DegradeOnUse)
@@ -156,7 +152,7 @@ namespace BedrollTweaker
         {
             GearItem item = GetGearItemPrefab("GEAR_BearSkinBedRoll");
             if (item == null) return;
-            item.m_WeightKG = Settings.settings.bearskinBedrollWeight;
+            item.WeightKG = Settings.settings.bearskinBedrollWeight;
         }
 
         private static GearItem GetGearItemPrefab(string name) => Resources.Load(name).Cast<GameObject>().GetComponent<GearItem>();

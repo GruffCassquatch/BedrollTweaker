@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel;
+using System.Reflection;
 using ModSettings;
 
 namespace BedrollTweaker
@@ -11,111 +12,111 @@ namespace BedrollTweaker
     {
         [Section("Enable Mod")]
         [Name("Enable Mod")]
-        [Description("YES: The mod is enabled. NO: The mod is disabled.")]
+        [ModSettings.Description("YES: The mod is enabled. NO: The mod is disabled.")]
         public bool modFunction = false;
 
 
         [Section("Bedroll")]
         [Name("Tweak Bedroll Warmth & Weight")]
-        [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
+        [ModSettings.Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice tweakBedroll = Choice.Default;
 
         [Name("Warmth Bonus")]
-        [Description("Maximum warmth bonus provided by standard bedroll.\nGame Default is 5°C.")]
+        [ModSettings.Description("Maximum warmth bonus provided by standard bedroll.\nGame Default is 5°C.")]
         [Slider(1f, 20f, 39, NumberFormat = "{0:0.##}°C")]
         public float bedrollWarmth = 5f;
 
         [Name("Weight")]
-        [Description("Weight of standard bedroll.\nGame Default is 1kg.")]
+        [ModSettings.Description("Weight of standard bedroll.\nGame Default is 1kg.")]
         [Slider(0.25f, 5f, 20, NumberFormat = "{0:0.##}kg")]
         public float bedrollWeight = 1f;
 
         [Name("Tweak Decay Rate")]
-        [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Decay.")]
+        [ModSettings.Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice bedrollDecay = Choice.Default;
 
         [Name("     Over time")]
-        [Description("Decay rate over time.\n100% = Game Default rate (-0.5 condition/day),\n50% = Half the Game Default rate,\n0% = No decay.")]
+        [ModSettings.Description("Decay rate over time.\n100% = Game Default rate (-0.5 condition/day),\n50% = Half the Game Default rate,\n0% = No decay.")]
         [Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
         public float bedrollDecayDaily = 1f;
 
         [Name("     On use")]
-        [Description("Decay per use.\n100% = Game Default rate (-0.25 condition/use),\n50% = Half the Game Default rate,\n0% = No decay.")]
+        [ModSettings.Description("Decay per use.\n100% = Game Default rate (-0.25 condition/use),\n50% = Half the Game Default rate,\n0% = No decay.")]
         [Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
         public float bedrollDecayOnUse = 1f;
 
         [Section("Bearskin Bedroll")]
         [Name("Tweak Bedroll Warmth & Weight")]
-        [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
+        [ModSettings.Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice tweakBearskinBedroll = Choice.Default;
 
         [Name("Warmth Bonus")]
-        [Description("Maximum warmth bonus provided by bearskin bedroll.\nGame Default is 12°C.")]
+        [ModSettings.Description("Maximum warmth bonus provided by bearskin bedroll.\nGame Default is 12°C.")]
         [Slider(1f, 20f, 39, NumberFormat = "{0:0.##}°C")]
         public float bearskinBedrollWarmth = 12f;
 
         [Name("Weight")]
-        [Description("Weight of bearskin bedroll.\nGame Default is 3kg.")]
+        [ModSettings.Description("Weight of bearskin bedroll.\nGame Default is 3kg.")]
         [Slider(0.25f, 10f, 40, NumberFormat = "{0:0.##}kg")]
         public float bearskinBedrollWeight = 3f;
 
         [Name("Tweak Decay Rate")]
-        [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Decay.")]
+        [ModSettings.Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Decay.")]
         [Choice("Unchanged", "Custom")]
         public Choice bearskinBedrollDecay = Choice.Default;
 
         [Name("     Over time")]
-        [Description("Decay rate over time.\n100% = Game Default rate (-1 condition/day),\n50% = Half the Game Default rate,\n0% = No decay.")]
+        [ModSettings.Description("Decay rate over time.\n100% = Game Default rate (-1 condition/day),\n50% = Half the Game Default rate,\n0% = No decay.")]
         [Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
         public float bearskinBedrollDecayDaily = 1f;
 
         [Name("     On use")]
-        [Description("Decay per use.\n100% = Game Default rate (-0.25 condition/use),\n50% = Half the Game Default rate,\n0% = No decay.")]
+        [ModSettings.Description("Decay per use.\n100% = Game Default rate (-0.25 condition/use),\n50% = Half the Game Default rate,\n0% = No decay.")]
         [Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
         public float bearskinBedrollDecayOnUse = 1f;
 
 
         [Section("Bedroll Warmth Stacks")]
         [Name("Bedroll Warmth Stacks")]
-        [Description("NO: Game Default.\nYES: Additional bedrolls in your inventory will provide extra warmth.")]
+        [ModSettings.Description("NO: Game Default.\nYES: Additional bedrolls in your inventory will provide extra warmth.")]
         public bool bedrollsStack = false;
 
         [Name("Cap number of Bedrolls")]
-        [Description("NO: Every bedroll in your inventory will provide extra warmth.\nYES: Set the maximum number of bedrolls that can add bonus warmth.")]
+        [ModSettings.Description("NO: Every bedroll in your inventory will provide extra warmth.\nYES: Set the maximum number of bedrolls that can add bonus warmth.")]
         public bool maxBedrolls = false;
 
         [Name("     Maximum Number:")]
         [Slider(1, 100)]
-        [Description("Set the maximum number of bedrolls that can provide warmth bonus.")]
+        [ModSettings.Description("Set the maximum number of bedrolls that can provide warmth bonus.")]
         public int maxBedrollsNumber = 1;
 
         [Name("Cap Total Warmth Bonus")]
-        [Description("NO: There is no cap on the total extra warmth from additional bedrolls.\nYES: Set the maximum total extra warmth provided by additional bedrolls.")]
+        [ModSettings.Description("NO: There is no cap on the total extra warmth from additional bedrolls.\nYES: Set the maximum total extra warmth provided by additional bedrolls.")]
         public bool capWarmthBonus = false;
 
         [Name("     Maximum Total Warmth Bonus:")]
         [Slider(1f, 100f, 199, NumberFormat = "{0:0.##}°C")]
-        [Description("Set the maximum total warmth bonus from all extra bedrolls.")]
+        [ModSettings.Description("Set the maximum total warmth bonus from all extra bedrolls.")]
         public float warmthBonusCap = 10f;
 
         [Name("Partial Warmth Bonus")]
-        [Description("NO: Each bedroll provides its full warmth bonus.\nYES: Each extra bedroll provides a % of extra warmth.")]
+        [ModSettings.Description("NO: Each bedroll provides its full warmth bonus.\nYES: Each extra bedroll provides a % of extra warmth.")]
         public bool partialBonus = false;
 
         [Name("     Partial Warmth Value:")]
-        [Description("Each extra bedroll will provide this % warmth.\nE.g. if set to 50%: 1st extra bedroll provides 50% warmth, 2nd 50% warmth, 3rd 50% warmth etc.\nApplied BEFORE Diminishing Warmth is caluculated.")]
+        [ModSettings.Description("Each extra bedroll will provide this % warmth.\nE.g. if set to 50%: 1st extra bedroll provides 50% warmth, 2nd 50% warmth, 3rd 50% warmth etc.\nApplied BEFORE Diminishing Warmth is caluculated.")]
         [Slider(0.01f, 0.99f, 99, NumberFormat = "{0:P0}")]
         public float partialRate = 0.5f;
 
         [Name("Diminishing Warmth Bonus")]
-        [Description("NO: Each bedroll provides its full warmth bonus.\nYES: Each extra bedroll provides progressively less extra warmth.")]
+        [ModSettings.Description("NO: Each bedroll provides its full warmth bonus.\nYES: Each extra bedroll provides progressively less extra warmth.")]
         public bool diminishingBonus = false;
 
         [Name("     Diminishing Rate:")]
-        [Description("Each extra bedroll will provide this % LESS warmth.\nE.g. if set to 10%: 1st extra bedroll provides 90% warmth, 2nd 80% warmth, 3rd 70% warmth etc.\nApplied AFTER Partial Warmth is caluclated.")]
+        [ModSettings.Description("Each extra bedroll will provide this % LESS warmth.\nE.g. if set to 10%: 1st extra bedroll provides 90% warmth, 2nd 80% warmth, 3rd 70% warmth etc.\nApplied AFTER Partial Warmth is caluclated.")]
         [Slider(0.01f, 0.99f, 99, NumberFormat = "{0:P0}")]
         public float diminishingRate = 0.1f;
 
