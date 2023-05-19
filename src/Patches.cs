@@ -7,14 +7,14 @@ namespace BedrollTweaker
 {
     class Patches
     {
-        [HarmonyPatch(typeof(Bed), "GetWarmthBonusCelsius")]
+        [HarmonyPatch(typeof(Bed), nameof(Bed.GetWarmthBonusCelsius))]
         private static class BedrollWarmthStackerBonus
         {
             internal static void Postfix(ref float __result)
             {
                 if (Settings.settings.modFunction && Settings.settings.bedrollsStack)
                 {
-                    List<float> allBedrolls = new List<float>();
+                    List<float> allBedrolls = new();
                     float bedrollBonus = 0f;
 
                     foreach (GearItemObject gearItemObject in GameManager.GetInventoryComponent().m_Items)
