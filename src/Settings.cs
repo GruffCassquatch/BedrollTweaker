@@ -87,8 +87,8 @@ namespace BedrollTweaker
         public bool maxBedrolls = false;
 
         [Name("Maximum Number:")]
-        [Slider(1, 100)]
         [Description("Set the maximum number of bedrolls that can provide warmth bonus.")]
+        [Slider(1, 100)]
         public int maxBedrollsNumber = 1;
 
         [Name("Cap Total Warmth Bonus")]
@@ -96,8 +96,8 @@ namespace BedrollTweaker
         public bool capWarmthBonus = false;
 
         [Name("Maximum Total Warmth Bonus:")]
-        [Slider(1f, 100f, 199, NumberFormat = "{0:0.##}°C")]
         [Description("Set the maximum total warmth bonus from all extra bedrolls.")]
+        [Slider(1f, 100f, 199, NumberFormat = "{0:0.##}°C")]
         public float warmthBonusCap = 10f;
 
         [Name("Partial Warmth Bonus")]
