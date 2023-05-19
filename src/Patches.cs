@@ -54,7 +54,7 @@ namespace BedrollTweaker
                         }
                         if (Settings.settings.partialBonus)
                         {
-                            List<float> partialBonus = new List<float>();
+                            List<float> partialBonus = new();
                             foreach (float originalValue in allBedrolls)
                             {
                                 partialBonus.Add(originalValue * Settings.settings.partialRate);
@@ -70,7 +70,7 @@ namespace BedrollTweaker
                             {
                                 if (multiplier <= 0) break;
                                 bedrollBonus += (originalValue * multiplier);
-                                multiplier = multiplier - Settings.settings.diminishingRate;
+                                multiplier -= Settings.settings.diminishingRate;
                             }
                         }
                     }
@@ -84,7 +84,7 @@ namespace BedrollTweaker
             }
         }
 
-        [HarmonyPatch(typeof(GearItem), "Awake")]
+        [HarmonyPatch(typeof(GearItem), nameof(GearItem.Awake))]
         private static class UpdateBedrollStats
         {
             internal static void Postfix(GearItem __instance)
@@ -137,14 +137,14 @@ namespace BedrollTweaker
             }
         }
 
-        [HarmonyPatch(typeof(GameManager), "Awake", null)]
+        [HarmonyPatch(typeof(GameManager), nameof(GameManager.Awake))]
         private static class AdjustBearskinBedrollPrefab
         {
             private static void Postfix()
             {
                 if (Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom)
                 {
-                    Settings.settings.ChangePrefabs();
+                    BedrollTweakerSettings.ChangePrefabs();
                 }
             }
         }
