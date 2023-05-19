@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Reflection;
-using ModSettings;
+﻿using ModSettings;
 
 namespace BedrollTweaker
 {
@@ -121,7 +119,7 @@ namespace BedrollTweaker
         public float diminishingRate = 0.1f;
 
 
-        protected override void OnChange(FieldInfo field, object oldValue, object newValue)
+        protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
         {
             if (field.Name == nameof(modFunction) ||
                 field.Name == nameof(tweakBedroll) ||
@@ -168,7 +166,7 @@ namespace BedrollTweaker
             base.OnConfirm();
             ChangePrefabs();
         }
-        internal void ChangePrefabs()
+        internal static void ChangePrefabs()
         {
             if (Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom) 
             {
@@ -179,10 +177,9 @@ namespace BedrollTweaker
 
     internal static class Settings
     {
-        public static BedrollTweakerSettings settings;
+        public static BedrollTweakerSettings settings = new();
         public static void OnLoad()
         {
-            settings = new BedrollTweakerSettings();
             settings.AddToModSettings("Bedroll Tweaker");
             settings.RefreshFields();
         }
