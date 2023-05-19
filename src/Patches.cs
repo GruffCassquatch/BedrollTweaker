@@ -154,7 +154,6 @@ namespace BedrollTweaker
             if (item == null) return;
             item.WeightKG = Settings.settings.bearskinBedrollWeight;
         }
-
-        private static GearItem GetGearItemPrefab(string name) => Resources.Load(name).Cast<GameObject>().GetComponent<GearItem>();
+        public static GearItem GetGearItemPrefab(string name) => GearItem.LoadGearItemPrefab(name).GetComponent<GearItem>();
     }
 }
