@@ -1,12 +1,8 @@
-﻿using MelonLoader;
-using UnityEngine;
-
-namespace BedrollTweaker
+﻿namespace BedrollTweaker
 {
     public class Implementation : MelonMod
     {
-        [Obsolete]
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
             Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
             Settings.OnLoad();
