@@ -13,7 +13,6 @@ namespace BedrollTweaker
         [Description("YES: The mod is enabled. NO: The mod is disabled.")]
         public bool modFunction = false;
 
-
         [Section("Bedroll")]
         [Name("Tweak Bedroll Warmth & Weight")]
         [Description("UNCHANGED: Game Default settings.\nCUSTOM: Show settings for Weight, Warmth & Decay.")]
@@ -75,7 +74,6 @@ namespace BedrollTweaker
         [Description("Decay per use.\n100% = Game Default rate (-0.25 condition/use),\n50% = Half the Game Default rate,\n0% = No decay.")]
         [Slider(0f, 1f, 101, NumberFormat = "{0:P0}")]
         public float bearskinBedrollDecayOnUse = 1f;
-
 
         [Section("Bedroll Warmth Stacks")]
         [Name("Bedroll Warmth Stacks")]
@@ -159,19 +157,6 @@ namespace BedrollTweaker
             SetFieldVisible(nameof(diminishingRate), Settings.settings.modFunction && Settings.settings.diminishingBonus && Settings.settings.bedrollsStack);
             SetFieldVisible(nameof(partialBonus), Settings.settings.modFunction && Settings.settings.bedrollsStack);
             SetFieldVisible(nameof(partialRate), Settings.settings.modFunction && Settings.settings.bedrollsStack && Settings.settings.partialBonus);
-        }
-
-        protected override void OnConfirm()
-        {
-            base.OnConfirm();
-            ChangePrefabs();
-        }
-        internal static void ChangePrefabs()
-        {
-            if (Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom) 
-            {
-                Patches.ChangeBearskinBedrollPrefab(); 
-            }
         }
     }
 
