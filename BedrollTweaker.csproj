@@ -36,5 +36,14 @@
     <Using Include="MelonLoader" />
     <Using Include="UnityEngine" />
   </ItemGroup>
+	
+	<PropertyGroup>
+		<TheLongDarkPath>O:\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
+	</PropertyGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /y &quot;$(BaseOutputPath)\$(Configuration)\net6.0\$(AssemblyName).dll&quot; &quot;$(TheLongDarkPath)\Mods&quot;" />
+	</Target>
+
 
 </Project>
