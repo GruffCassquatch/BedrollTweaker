@@ -1,159 +1,84 @@
-﻿using HarmonyLib;
-using Il2Cpp;
-using Il2CppTLD.Gear;
-using UnityEngine;
-
-namespace BedrollTweaker
+﻿namespace BedrollTweaker
 {
-    class Patches
+    [HarmonyPatch(typeof(Bed), nameof(Bed.GetWarmthBonusCelsius))]
+    internal class BedrollWarmthStackerBonus
     {
-        [HarmonyPatch(typeof(Bed), nameof(Bed.GetWarmthBonusCelsius))]
-        private static class BedrollWarmthStackerBonus
+        private static void Postfix(ref float __result)
         {
-            internal static void Postfix(ref float __result)
+            Bed __instance = new();
+            List<float> totalbedrolls   = new();
+            List<float> partial         = new();
+
+            float bedrollStack          = 0f;
+            float num                   = __instance.m_WarmthBonusCelsius;
+
+            if (Settings.settings.modFunction && Settings.settings.bedrollsStack)
             {
-                if (Settings.settings.modFunction && Settings.settings.bedrollsStack)
+
+                // Obtain all the bedrolls
+                foreach (GameObject eachItem in GameManager.GetInventoryComponent().m_Items)
                 {
-                    List<float> allBedrolls = new();
-                    float bedrollBonus = 0f;
+                    GearItem gi = eachItem.GetComponent<GearItem>();
+                    if (gi == null) continue;
 
-                    foreach (GearItemObject gearItemObject in GameManager.GetInventoryComponent().m_Items)
+                    Bed bed = gi.m_Bed;
+                    if (bed == null) continue;
+
+                    if (bed.m_Bedroll)
                     {
-                        GearItem gearItem = gearItemObject;
-                        if (gearItem)
-                        {
-                            Bed bed = gearItem.m_Bed;
-                            if (bed)
-                            {
-                                if (bed.m_Bedroll)
-                                {
-                                    allBedrolls.Add(bed.m_WarmthBonusCelsius * bed.m_Bedroll.GetNormalizedCondition());
-                                    bedrollBonus += (bed.m_WarmthBonusCelsius * bed.m_Bedroll.GetNormalizedCondition());
-                                }
-                            }
-                        }
+                        totalbedrolls.Add(bed.m_WarmthBonusCelsius * bed.m_Bedroll.GetNormalizedCondition());
+                        bedrollStack += (bed.m_WarmthBonusCelsius * bed.m_Bedroll.GetNormalizedCondition());
                     }
-
-                    if (Settings.settings.maxBedrolls || Settings.settings.diminishingBonus || Settings.settings.partialBonus)
-                    {
-                        allBedrolls.Sort();
-                        allBedrolls.Reverse();
-
-                        bedrollBonus = 0f;
-
-                        if (Settings.settings.maxBedrolls)
-                        {
-                            allBedrolls = allBedrolls.Take(Settings.settings.maxBedrollsNumber).ToList();
-                        }
-                        if (!Settings.settings.diminishingBonus && !Settings.settings.partialBonus)
-                        {
-                            foreach (float originalValue in allBedrolls)
-                            {
-                                bedrollBonus += originalValue;
-                            }
-                        }
-                        if (Settings.settings.partialBonus)
-                        {
-                            List<float> partialBonus = new();
-                            foreach (float originalValue in allBedrolls)
-                            {
-                                partialBonus.Add(originalValue * Settings.settings.partialRate);
-                                bedrollBonus += originalValue * Settings.settings.partialRate;
-                            }
-                            allBedrolls = partialBonus;
-                        }
-                        if (Settings.settings.diminishingBonus)
-                        {
-                            bedrollBonus = 0f;
-                            float multiplier = 1 - Settings.settings.diminishingRate;
-                            foreach (float originalValue in allBedrolls)
-                            {
-                                if (multiplier <= 0) break;
-                                bedrollBonus += (originalValue * multiplier);
-                                multiplier -= Settings.settings.diminishingRate;
-                            }
-                        }
-                    }
-
-                    if (Settings.settings.capWarmthBonus)
-                    {
-                        bedrollBonus = Math.Min(bedrollBonus, Settings.settings.warmthBonusCap);
-                    }
-                    __result += bedrollBonus;
+                    break;
                 }
-            }
-        }
-
-        [HarmonyPatch(typeof(GearItem), nameof(GearItem.Awake))]
-        private static class UpdateBedrollStats
-        {
-            internal static void Postfix(GearItem __instance)
-            {
-                if (Settings.settings.modFunction) 
+                if (Settings.settings.maxBedrolls || Settings.settings.diminishingBonus || Settings.settings.partialBonus)
                 {
-                    if (__instance.name.Contains("GEAR_BedRoll"))
-                    {
-                        if (Settings.settings.tweakBedroll == Choice.Custom) 
-                        {
-                            __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bedrollWarmth;
-                            __instance.WeightKG = Settings.settings.bedrollWeight; 
-                        }
-                        if (Settings.settings.bedrollDecay == Choice.Custom)
-                        {
-                            //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
-                            __instance.m_GearItemData.m_DailyHPDecay *= Settings.settings.bedrollDecayDaily;
-                            //MelonLogger.Msg(__instance.name.ToString() + "NEW DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
+                    totalbedrolls.Sort();
+                    totalbedrolls.Reverse();
 
-                            if (__instance.m_DegradeOnUse)
-                            {
-                                //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
-                                __instance.m_DegradeOnUse.m_DegradeHP *= Settings.settings.bedrollDecayOnUse;
-                                //MelonLogger.Msg(__instance.name.ToString() + "NEW DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
-                            }
-                        }
+                    bedrollStack = 0f;
+
+                    if (Settings.settings.maxBedrolls) totalbedrolls = totalbedrolls.Take(Settings.settings.maxBedrollsNumber).ToList();
+                    if (!Settings.settings.diminishingBonus && !Settings.settings.partialBonus)
+                    {
+                        foreach (float value in  totalbedrolls) bedrollStack += value;
                     }
-                    else if (__instance.name.Contains("GEAR_BearskinBedRoll"))
+                    if (Settings.settings.partialBonus)
                     {
-                        if (Settings.settings.tweakBearskinBedroll == Choice.Custom)
+                        foreach (float value in totalbedrolls)
                         {
-                            __instance.m_Bed.m_WarmthBonusCelsius = Settings.settings.bearskinBedrollWarmth;
-                            __instance.WeightKG = Settings.settings.bearskinBedrollWeight;
+                            partial.Add(value * Settings.settings.partialRate);
+                            bedrollStack += (value * Settings.settings.partialRate);
                         }
-                        if (Settings.settings.bearskinBedrollDecay == Choice.Custom)
-                        {
-                            //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
-                            __instance.m_GearItemData.m_DailyHPDecay *= Settings.settings.bearskinBedrollDecayDaily;
-                            //MelonLogger.Msg(__instance.name.ToString() + "NEW DailyHPDecay = " + __instance.m_DailyHPDecay.ToString());
-
-                            if (__instance.m_DegradeOnUse)
+                        totalbedrolls = partial;
+                    }
+                    if (Settings.settings.diminishingBonus)
+                    {
+                        bedrollStack = 0f;
+                        float mult = (1 - Settings.settings.diminishingRate);
+                        if (mult > 0) // check here instead of in the foreach
+                        { 
+                            foreach (float value in totalbedrolls)
                             {
-                                //MelonLogger.Msg(__instance.name.ToString() + "ORIGINAL DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
-                                __instance.m_DegradeOnUse.m_DegradeHP *= Settings.settings.bearskinBedrollDecayOnUse;
-                                //MelonLogger.Msg(__instance.name.ToString() + "NEW DegradeOnUse = " + __instance.m_DegradeOnUse.m_DegradeHP.ToString());
+                                bedrollStack += (value * mult);
+                                mult -= Settings.settings.diminishingRate;
                             }
                         }
                     }
                 }
-            }
-        }
+                if (Settings.settings.capWarmthBonus) bedrollStack = Math.Min(bedrollStack, Settings.settings.warmthBonusCap);
 
-        [HarmonyPatch(typeof(GameManager), nameof(GameManager.Awake))]
-        private static class AdjustBearskinBedrollPrefab
-        {
-            private static void Postfix()
+                __result = bedrollStack;
+            }
+            // Vanilla code
+            else
             {
-                if (Settings.settings.modFunction && Settings.settings.tweakBearskinBedroll == Choice.Custom)
+                if (__instance.m_Bedroll)
                 {
-                    BedrollTweakerSettings.ChangePrefabs();
+                    num *= __instance.m_Bedroll.GetNormalizedCondition();
                 }
+                __result = num;
             }
         }
-        public static void ChangeBearskinBedrollPrefab()
-        {
-            GearItem item = GetGearItemPrefab("GEAR_BearSkinBedRoll");
-            if (item == null) return;
-            item.WeightKG = Settings.settings.bearskinBedrollWeight;
-        }
-        public static GearItem GetGearItemPrefab(string name) => GearItem.LoadGearItemPrefab(name).GetComponent<GearItem>();
     }
 }
